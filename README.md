@@ -31,7 +31,7 @@ Fixtures cover issued-consistent, issued-with-caveats, not-assessable/refunded, 
 
 ## Development
 
-The application implementation will supply framework-specific commands. Until then, the typed content and fixtures can be imported into any TypeScript UI.
+Requires Node.js 22. Run `npm install`, then `npm run dev` for the local demo. Use `npm run check` to run lint, the deterministic domain tests, and the production build.
 
 ## Contributing
 
