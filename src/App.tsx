@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { reviewFixtures, type ReviewFixture } from "./fixtures";
 import { siteCopy } from "./content/site";
 import {
@@ -29,7 +29,6 @@ function App(){
  const [step,setStep]=useState(0);
  const [checked,setChecked]=useState<string[]>([]);
  const fixture=reviewFixtures.find(x=>x.id===fixtureId)??reviewFixtures[0];
- const meta=stateMeta[fixture.state];
  const go=(next:View)=>{setView(next);setMenu(false);window.scrollTo({top:0,behavior:"smooth"})};
  const navigation=<Navigation current={view==="samples"?"Sample reports":view==="methodology"?"Methodology":view==="reviewer"?"Reviewer demo":"How it works"} items={nav} menuOpen={menu} onMenuToggle={()=>setMenu(!menu)} action={<Button onClick={()=>go("check")}>Check a listing</Button>}/>;
  return <AppShell demo={<DemoBar label="Public interactive demo" message="Every listing, person, document, event and price is fictional." action={<button className="text-button" onClick={()=>go("methodology")}>Read the limits →</button>}/>} navigation={navigation}>
