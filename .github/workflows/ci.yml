@@ -1,0 +1,22 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Public repository hygiene
+        run: |
+          ! git grep -nE 'anchit\.jain|@berkeley|/Users/|sk-[A-Za-z0-9_-]{20,}'
+          test ! -d .vercel
+          test -z "$(git ls-files '*.env*' '.vercel/**')"
